@@ -11,11 +11,10 @@ library(doMC)
 library(rrBLUP)
 library(qtl)
 
-
-registerDoMC(cores=8)
+registerDoMC(cores=4)
 
 # location of QTL_mappingFx.R
-src.directory= '/media/kserver/kruglyak/raid1/home/jbloom/source/BYxRM_031713/'
+src.directory= '~/github/Bloom13/'
 source((paste(src.directory, "QTL_mappingFx.R", sep="")))
 
 # Loads 'pheno_raw' list (contains phenotype measurements for each trait)
@@ -24,8 +23,6 @@ load(url("http://genomics-pubs.princeton.edu/YeastCross_BYxRM/data/pheno_raw.Rda
 # Loads R/QTL object 'cross' (contains average phenotype for each segregant for each trait,
 # markers for QTL mapping and genetic map
 load(url("http://genomics-pubs.princeton.edu/YeastCross_BYxRM/data/cross.Rdata"))
-
-
 
 #Calculate broad-sense heritability ####################################################################################
 BroadH2      = sapply(pheno_raw, calc.BroadH2, jackknife=FALSE)
